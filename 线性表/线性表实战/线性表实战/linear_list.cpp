@@ -34,6 +34,10 @@ void insertdata(LineList &ls)//引用
 		{
 			printf("位置不合法\n");
 		}
+		else if (ls.length==Maxsize)
+		{
+			printf("存储空间已满\n");
+		}
 		else
 		{
 			
@@ -49,6 +53,50 @@ void insertdata(LineList &ls)//引用
 	
 }
 
+//改变数据
+void changeData(LineList& ls)
+{
+	cout << "请输入你要改变的数据的位置和要改变的数据" << endl;
+	int loc = 0;
+	int num = 0;
+	cin >> loc>>num;
+	if (loc<1 || loc>ls.length + 1)
+	{
+		cout << "位置不合法" << endl;
+	}
+	else
+	{
+		ls.data[loc-1] = num;//位置和下标差异
+		cout << "change successuful!" << endl;
+	}
+}
+
+//删除数据
+void deletData(LineList& ls)
+{
+	cout << "输入要删除的数据值" << endl;
+	int num = 0;
+	cin >> num;
+	for (int i = 0; i < ls.length; i++)
+	{
+		if (ls.data[i] == num)
+		{
+			//i的后面的值向前移动并且length-1
+			for (int j = i; j < ls.length; j++)
+			{
+				ls.data[j] = ls.data[j + 1];
+			}
+			ls.length--;
+			cout << "delete successful" << endl;
+			break;
+		}
+		else
+		{
+			cout << "该数据未找到" << endl;
+			break;
+		}
+	}
+}
 //遍历线性表
 void printlist(LineList ls)
 {
@@ -67,7 +115,11 @@ int main()
 	ls.data[2] = 3;
 	//插入数据
 	printlist(ls);
-	insertdata(ls);
+	/*insertdata(ls);
+	printlist(ls);*/
+	/*changeData(ls);
+	printlist(ls);*/
+	deletData(ls);
 	printlist(ls);
 	return 0;
 }
