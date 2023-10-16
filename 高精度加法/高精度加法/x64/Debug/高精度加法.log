@@ -1,0 +1,5 @@
+﻿  main.cpp
+D:\DataStructures\高精度加法\高精度加法\main.cpp(28,5): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\DataStructures\高精度加法\高精度加法\main.cpp(29,5): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\DataStructures\高精度加法\高精度加法\main.cpp(31,5): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  高精度加法.vcxproj -> D:\DataStructures\高精度加法\x64\Debug\高精度加法.exe
