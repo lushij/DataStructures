@@ -1,0 +1,3 @@
+﻿  main.cpp
+D:\DataStructures\gusesNum\gusesNum\main.cpp(8,15): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+  gusesNum.vcxproj -> D:\DataStructures\gusesNum\x64\Debug\gusesNum.exe
