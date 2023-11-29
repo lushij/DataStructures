@@ -37,7 +37,16 @@ bool insertDnode(Dnode& l, int val)
 	body->val = val;
 	return true;
 }
-
+void traverse(Dnode l)
+{
+	l = l->next;//ĞéÄâÍ·½áµã£¬ÉÚ±ø
+	while (l != NULL)
+	{
+		cout <<l->val << " ";
+		l = l->next;
+	}
+	cout << endl;
+}
 int main()
 {
 	Dnode l;
@@ -46,6 +55,7 @@ int main()
 	insertDnode(l, val);
 	insertDnode(l, 2);
 	insertDnode(l, 3);
-	cout << l->next->next->next->proc->val;
+	cout << l->next->next->next->proc->val<<endl;
+	traverse(l);
 	return 0;
 }
