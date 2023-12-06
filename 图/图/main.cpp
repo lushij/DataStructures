@@ -28,7 +28,6 @@ public:
 	}
 	/* 添加顶点 */
 	void addVertex(int val) {
-	
 		int n = size();
 		// 向顶点列表中添加新顶点的值
 		vertices.push_back(val);
@@ -101,19 +100,45 @@ public:
 		cout << " 邻接矩阵 =" << endl;
 		printVectorMatrix(adjMat);
 	}
+	/* 深度优先搜索 */
+	void dfs(int startVertex) {
+		// 使用一个辅助数组来标记顶点是否被访问过
+		vector<bool> visited(size(), false);
+
+		// 调用实际的 DFS 函数
+		dfsRecursive(startVertex, visited);
+	}
+private:
+		/* 递归的深度优先搜索 */
+		void dfsRecursive(int vertex, vector<bool>& visited) {
+			// 访问当前顶点
+			cout << vertices[vertex] << " ";
+			visited[vertex] = true;
+
+			// 对当前顶点的所有邻居进行递归调用
+			for (int i = 0; i < size(); ++i) {
+				if (adjMat[vertex][i] == 1 && !visited[i]) {
+					dfsRecursive(i, visited);
+				}
+			}
+		}
 };
 int main()
 {
 	// 创建顶点列表和边列表
 	vector<int> vertices = { 0, 1, 2, 3 };
 	vector<vector<int>> edges = { {0, 1}, {1, 2}, {2, 3}, {3, 0} };
-	
 	// 创建图的实例
 	GraphAdjMat myGraph(vertices, edges);
 	// 执行一些图操作
 	myGraph.addVertex(4);
+	myGraph.addVertex(5);
 	myGraph.addEdge(1, 4);
+	myGraph.addEdge(1, 5);
 	// 打印图的信息
 	myGraph.print();
+	// 执行深度优先搜索
+	cout << "深度优先搜索结果: ";
+	myGraph.dfs(0);
 	return 0;
 }
