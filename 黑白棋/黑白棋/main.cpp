@@ -94,10 +94,12 @@ void print(void)	// 画棋盘
 			case 'B'://游戏过程中根据后面的变化来做出相应变化
 				putimage(37 * y, 37 * x, &img[1]);
 				black++;//黑棋的数量加一
+				//cout << "黑棋为" << black << endl;
 				break;
 			case 'W':
 				putimage(37 * y, 37 * x, &img[2]);
 				white++;//白棋的数量加一
+				//cout << "白棋为" << white << endl;
 				break;
 			}
 }
@@ -142,6 +144,11 @@ void draw(int x, int y, char a)	// 下当前子并且同时判断是否进行翻转
 	}
 	map[x][y] = a; //在最开始的(x, y) 位置放置当前玩家的棋子
 }
+
+
+
+
+
 
 int judge(int x, int y, char a)	// 判断当前是否可以落下，同draw函数
 {
@@ -191,24 +198,70 @@ bool baidu(char c)	// 判断是否有棋可吃
 	return false;
 }
 
-bool quit(char c)	// 判断是否有棋存活，判断游戏是否结束
-{
+//bool quit(char c)	// 判断是否有棋存活，判断游戏是否结束
+//{
+//	int x, y;
+//	for (x = 0; x < 8; x++)
+//	{
+//		for (y = 0; y < 8; y++)
+//		{
+//			if (map[x][y] == c)
+//				return false;//表示还有这个类型的棋子，游戏不结束
+//		}
+//	}
+//	return true;
+//}
+
+bool quit(char c) {
+	// Check if there are no pieces of the given color on the board
+	//检查棋盘上是否没有给定颜色的棋子
 	int x, y;
-	for (x = 0; x < 8; x++)
-	{
-		for (y = 0; y < 8; y++)
-		{
-			if (map[x][y] == c)
-				return false;//表示还有这个类型的棋子，游戏不结束
+	bool hasPieces = false;
+	for (x = 0; x < 8; x++) {
+		for (y = 0; y < 8; y++) {
+			if (map[x][y] == c) {
+				hasPieces = true;
+				break;
+			}
+		}
+		if (hasPieces) {
+			break;
 		}
 	}
-	return true;
+
+	// Check if there are valid moves left for the given color
+	//检查给定颜色是否还剩下有效的移动
+	bool hasValidMoves = baidu(c);
+
+	// Return true if there are no pieces or no valid moves left
+	//如果没有棋子或没有剩下有效的移动，则返回 true
+	return !hasPieces || !hasValidMoves;
 }
+
 
 bool ask(void)	// 弹出对话框
 {
+	int B = 0;
+	int W = 0;
+	for (int i = 0; i < 8; ++i)
+	{
+		for (int j = 0; j < 8; ++j)
+		{
+			if (map[i][j] == 'B')
+			{
+				++B;
+			}
+			if (map[i][j] == 'W')
+			{
+				++W;
+			}
+		}
+	}
 	HWND wnd = GetHWnd();//句柄
 	int key;
+	black = B;
+	white = W;
+	cout << "白旗数量：" << W << "\t黑棋数量：" << B << endl;
 	if (black == white)
 		//固定模板，会用就行，第一个参数是句柄，最后的就是默认参数（出现是和否选项）
 		key = MessageBox(wnd,  "和局","GameOver" ,MB_YESNO);
