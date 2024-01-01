@@ -1,0 +1,6 @@
+﻿  源.cpp
+D:\DataStructures\爱心\爱心\源.cpp(24,15): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+D:\DataStructures\爱心\爱心\源.cpp(50,83): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+D:\DataStructures\爱心\爱心\源.cpp(65,75): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+D:\DataStructures\爱心\爱心\源.cpp(66,83): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+  爱心.vcxproj -> D:\DataStructures\爱心\x64\Debug\爱心.exe
